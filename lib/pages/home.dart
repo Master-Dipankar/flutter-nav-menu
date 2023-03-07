@@ -11,18 +11,20 @@ class Home extends StatefulWidget {
 }
 //---------------- Side Navigation bar starts here---------------------------->
 class NavigationDrawer extends StatelessWidget {
-  const NavigationDrawer({Key? key}) : super(key: key);
+  final double drawerHeaderMarginTop;
+
+  const NavigationDrawer({Key? key, this.drawerHeaderMarginTop = 0})
+      : super(key: key);
 
   @override
   Widget build(BuildContext context) => Drawer(
     child: SingleChildScrollView(
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.stretch,
-        children:<Widget> [
+        children: <Widget>[
           buildHeader(context),
           buildMenuItems(context),
         ],
-
       ),
     ),
   );
@@ -31,44 +33,46 @@ class NavigationDrawer extends StatelessWidget {
     return Container(
       color: const Color(0xFF2F1256),
       padding: EdgeInsets.only(
-        top: MediaQuery.of(context).padding.top,
+        top: MediaQuery.of(context).padding.top + drawerHeaderMarginTop,
         left: 16.0,
         right: 16.0,
         bottom: 16.0,
       ),
-      child: Column(
-        crossAxisAlignment: CrossAxisAlignment.start,
-        children: const [
-          CircleAvatar(
-            radius: 40.0,
-            backgroundImage: AssetImage('assets/dp.png'),
-          ),
-          SizedBox(height: 8.0),
-          Text(
-            'Dipankar',
-            style: TextStyle(
-              fontSize: 20.0,
-              fontWeight: FontWeight.bold,
-              color: Colors.white,
+      child: Center(
+        child: Column(
+          crossAxisAlignment: CrossAxisAlignment.start,
+          children: const [
+            CircleAvatar(
+              radius: 40.0,
+              backgroundImage: AssetImage('assets/dp.png'),
             ),
-          ),
-          SizedBox(height: 4.0),
-          Text(
-            '123 456 7890',
-            style: TextStyle(
-              fontSize: 16.0,
-              color: Colors.white,
+            SizedBox(height: 8.0),
+            Text(
+              'Dipankar',
+              style: TextStyle(
+                fontSize: 20.0,
+                fontWeight: FontWeight.bold,
+                color: Colors.white,
+              ),
             ),
-          ),
-          SizedBox(height: 4.0),
-          Text(
-            'Address',
-            style: TextStyle(
-              fontSize: 16.0,
-              color: Colors.white,
+            SizedBox(height: 4.0),
+            Text(
+              '123 456 7890',
+              style: TextStyle(
+                fontSize: 16.0,
+                color: Colors.white,
+              ),
             ),
-          ),
-        ],
+            SizedBox(height: 4.0),
+            Text(
+              'Address',
+              style: TextStyle(
+                fontSize: 16.0,
+                color: Colors.white,
+              ),
+            ),
+          ],
+        ),
       ),
     );
   }
@@ -132,13 +136,14 @@ class NavigationDrawer extends StatelessWidget {
           onTap: (){},
         ),
         Container(
-          padding: const EdgeInsets.symmetric(vertical: 20.0),
+          padding: const EdgeInsets.symmetric(vertical: 20.0, horizontal: 20.0),
           decoration: const BoxDecoration(
             color: Colors.transparent,
           ),
+          alignment: Alignment.centerLeft,
           child: const Text(
             'App Version -v2.00',
-            style: TextStyle(fontSize: 12.0),
+            style: TextStyle(fontSize: 15.0),
           ),
         ),
       ],
